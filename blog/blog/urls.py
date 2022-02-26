@@ -38,5 +38,5 @@ urlpatterns = [
     path('', include(post_router.urls)),
     path('me/posts', user_post_list, name='user_posts'),
     re_path('^posts/(?P<post_id>.+)/', include(comment_router.urls)),
-    re_path('posts/(?P<post_id>.+)/comments/(?P<pk>.+)$', comment_delete, name='comment-detail')
+    re_path('^posts/(?P<post_id>.+)/comments/(?P<pk>.+)$', comment_delete, name='comment-detail')
 ]
