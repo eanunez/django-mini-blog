@@ -28,6 +28,9 @@ comment_router.register(r'comments', CommentViewSet)
 user_post_list = PostViewSet.as_view({
     'get': 'me_list',
 })
+comment_delete = CommentViewSet.as_view({
+    'delete': 'destroy',
+})
 
 urlpatterns = [
     path('admin', admin.site.urls),
@@ -35,4 +38,5 @@ urlpatterns = [
     path('', include(post_router.urls)),
     path('me/posts', user_post_list, name='user_posts'),
     re_path('^posts/(?P<post_id>.+)/', include(comment_router.urls)),
+    re_path('posts/(?P<post_id>.+)/comments/(?P<pk>.+)$', comment_delete, name='comment-detail')
 ]
